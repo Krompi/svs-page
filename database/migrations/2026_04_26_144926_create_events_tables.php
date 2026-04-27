@@ -12,9 +12,20 @@ return new class extends Migration
             // this will create an id, a "published" column, and soft delete and timestamps columns
             createDefaultTableFields($table);
             
+            $table->string('title')->nullable();
+            $table->text('teaser')->nullable();
+            $table->text('description')->nullable();
+            
             // add those 2 columns to enable publication timeframe fields (you can use publish_start_date only if you don't need to provide the ability to specify an end date)
-            // $table->timestamp('publish_start_date')->nullable();
-            // $table->timestamp('publish_end_date')->nullable();
+            $table->timestamp('publish_start_date')->nullable();
+            $table->timestamp('publish_end_date')->nullable();
+
+            $table->date('start_date')->nullable();
+            $table->time('start_time')->nullable();
+            $table->date('end_date')->nullable();
+            $table->time('end_time')->nullable();
+            $table->string('location')->nullable();
+            $table->string('location_url')->nullable();
         });
 
         Schema::create('event_translations', function (Blueprint $table) {
