@@ -25,5 +25,5 @@
 <x-twill::medias
     name="gallery"
     label="Gallery images"
-    :max="0"
+    :max="100"
 />
