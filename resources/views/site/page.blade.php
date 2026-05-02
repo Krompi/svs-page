@@ -9,5 +9,6 @@
 <div class="mx-auto max-w-2xl">
     {!! $item->renderBlocks() !!}
 </div>
+@stack('scripts')
 </body>
 </html>
