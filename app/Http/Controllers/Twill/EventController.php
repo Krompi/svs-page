@@ -40,4 +40,20 @@ class EventController extends BaseModuleController
 
         return $table;
     }
+ 
+    public function getCreateForm(): Form
+    {
+        return Form::make([
+            Input::make()
+                ->name('title')
+                ->label('Veranstaltungstitel')
+                ->translatable()
+                ->onChange('formatPermalink'),
+            Input::make()
+                ->name('teaser')
+                ->label('kurzer Teaser')
+                ->type('textarea')
+                ->translatable()
+        ]);
+    }
 }

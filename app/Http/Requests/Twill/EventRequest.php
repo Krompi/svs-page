@@ -9,17 +9,12 @@ class EventRequest extends Request
     public function rulesForCreate()
     {
         return [
-            'title.required',
         ];
     }
 
     public function rulesForUpdate()
     {
         return [
-            'title.required',
-            'description.required',
-            'start_date.required',
-            'start_time.required',
         ];
     }
 }
