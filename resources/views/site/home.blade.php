@@ -74,15 +74,17 @@
     <div class="grid md:grid-cols-3 gap-6">
 
         <!-- CARD -->
+        @foreach($events as $event)
         <div class="bg-white rounded-xl shadow p-5">
             <div class="bg-accent text-center py-2 rounded mb-3 font-bold">
-                24 JUN
+               {{ $event->start_date->format('d.m.Y') }}
             </div>
             <h3 class="font-semibold mb-2">Stadt grüner gestalten</h3>
-            <p class="text-sm text-gray-500 mb-2">19:00 Uhr · Rathaus</p>
+            <p class="text-sm text-gray-500 mb-2">{{ $event->start_time }} Uhr · {{ $event->location }}</p>
             <p class="text-sm mb-4">Vortrag und Diskussion zur Stadtbegrünung.</p>
             <a href="#" class="text-primary text-sm">Details →</a>
         </div>
+        @endforeach
 
         <div class="bg-white rounded-xl shadow p-5">
             <div class="bg-accent text-center py-2 rounded mb-3 font-bold">

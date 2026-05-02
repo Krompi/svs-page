@@ -1,11 +1,11 @@
 <div class="py-12">
-    @if($block->input('title'))
-        <h2 class="text-3xl font-bold mb-4">{{ $block->input('title') }}</h2>
+    @if($block->translatedInput('title'))
+        <h2 class="text-3xl font-bold mb-4">{{ $block->translatedInput('title') }}</h2>
     @endif
 
-    @if($block->input('intro'))
+    @if($block->translatedInput('intro'))
         <div class="prose max-w-none mb-8">
-            {!! $block->input('intro') !!}
+            {!! $block->translatedInput('intro') !!}
         </div>
     @endif
 

@@ -23,7 +23,7 @@ class EventController extends BaseModuleController
      */
     protected function setUpController(): void
     {
-        $this->setPermalinkBase('');
+        $this->setPermalinkBase('events');
         $this->withoutLanguageInPermalink();
     }
 

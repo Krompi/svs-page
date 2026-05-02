@@ -12,7 +12,7 @@ return new class extends Migration
             // this will create an id, a "published" column, and soft delete and timestamps columns
             createDefaultTableFields($table);
             
-            $table->string('title')->nullable();
+            $table->text('title');
             $table->text('teaser')->nullable();
             $table->text('description')->nullable();
             
@@ -31,7 +31,7 @@ return new class extends Migration
         Schema::create('event_translations', function (Blueprint $table) {
             createDefaultTranslationsTableFields($table, 'event');
             $table->string('title', 200)->nullable();
-            $table->text('description')->nullable();
+            $table->text('teaser')->nullable();
         });
 
         Schema::create('event_slugs', function (Blueprint $table) {
