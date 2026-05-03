@@ -76,35 +76,19 @@
         <div class="grid md:grid-cols-3 gap-6">
 
             <!-- CARD -->
-            <div class="bg-white rounded-xl shadow p-5">
-                <div class="bg-accent text-center py-2 rounded mb-3 font-bold">
-                    24 JUN
+            @foreach ($events as $event)
+                <div class="bg-white rounded-xl shadow p-5">
+                    <div class="bg-accent text-center py-2 rounded mb-3 font-bold">
+                        {{ $event->start_date->format('d.m.Y') }}
+                    </div>
+                    <h3 class="font-semibold mb-2">{{ $event->title }}</h3>
+                    <p class="text-sm text-gray-500 mb-2">{{ $event->start_time->format('H:i') }} Uhr ·
+                        {{ $event->location }}</p>
+                    <p class="text-sm mb-4">{{ $event->teaser }}</p>
+                    <a href="{{ route('events.show', ['slug' => $event->slug]) }}" class="text-primary text-sm">Details
+                        →</a>
                 </div>
-                <h3 class="font-semibold mb-2">Stadt grüner gestalten</h3>
-                <p class="text-sm text-gray-500 mb-2">19:00 Uhr · Rathaus</p>
-                <p class="text-sm mb-4">Vortrag und Diskussion zur Stadtbegrünung.</p>
-                <a href="#" class="text-primary text-sm">Details →</a>
-            </div>
-
-            <div class="bg-white rounded-xl shadow p-5">
-                <div class="bg-accent text-center py-2 rounded mb-3 font-bold">
-                    08 JUL
-                </div>
-                <h3 class="font-semibold mb-2">Barrierefreiheit für alle</h3>
-                <p class="text-sm text-gray-500 mb-2">18:30 Uhr · Bürgerhaus</p>
-                <p class="text-sm mb-4">Wie unsere Stadt inklusiver wird.</p>
-                <a href="#" class="text-primary text-sm">Details →</a>
-            </div>
-
-            <div class="bg-white rounded-xl shadow p-5">
-                <div class="bg-accent text-center py-2 rounded mb-3 font-bold">
-                    22 SEP
-                </div>
-                <h3 class="font-semibold mb-2">Gestaltungsrichtlinien</h3>
-                <p class="text-sm text-gray-500 mb-2">19:00 Uhr · Rathaus</p>
-                <p class="text-sm mb-4">Infos zu aktuellen Richtlinien.</p>
-                <a href="#" class="text-primary text-sm">Details →</a>
-            </div>
+            @endforeach
 
         </div>
     </section>

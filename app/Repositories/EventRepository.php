@@ -9,15 +9,14 @@ use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\ModuleRepository;
-use App\Models\Page;
+use App\Models\Event;
 
-class PageRepository extends ModuleRepository
+class EventRepository extends ModuleRepository
 {
     use HandleBlocks, HandleTranslations, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions;
 
-    public function __construct(Page $model)
+    public function __construct(Event $model)
     {
-        // dd($model);
         $this->model = $model;
     }
 }

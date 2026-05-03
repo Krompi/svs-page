@@ -18,6 +18,14 @@ return [
                     ],
                 ],
             ],
+            'gallery' => [
+                'default' => [
+                    [
+                        'name' => 'default',
+                        'ratio' => 16 / 9,
+                    ],
+                ],
+            ],
         ],
     ],
     'default_crops' => [
