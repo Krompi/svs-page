@@ -1,14 +1,5 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <title>{{ $item->title }}</title>
-    @vite('resources/css/app.css')
-</head>
-<body>
-<x-menu/> 
-<div class="mx-auto max-w-2xl">
-    {!! $item->renderBlocks() !!}
-</div>
-@stack('scripts')
-</body>
-</html>
+<x-layout.app :title="$item->title">
+    <div class="mx-auto max-w-2xl py-10">
+        {!! $item->renderBlocks() !!}
+    </div>
+</x-layout.app>
