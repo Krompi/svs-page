@@ -65,6 +65,53 @@ class Event extends Model
         'title',
     ];
 
+    public function getCoverAttribute()
+    {
+        return $this->medias()->wherePivot('role', 'cover')->first();
+    }
+
+    public function getCoverUrlAttribute()
+    {
+        return $this->image('cover');
+    }
+
+    public function getCoverPreviewUrlAttribute()
+    {
+        return $this->image('cover', 'default', ['h' => 256]);
+    }
+
+    public function getCoverAltAttribute()
+    {
+        return $this->cover?->alt_text ?? $this->title;
+    }
+
+    public function getLocalizedStartDateAttribute()
+    {
+        return $this->start_date
+            ? $this->start_date->locale(app()->getLocale())
+            : null;
+    }
+
+    public function getStartDateDayAttribute()
+    {
+        return $this->localized_start_date?->isoFormat('DD');
+    }
+
+    public function getStartDateMonthAttribute()
+    {
+        return $this->localized_start_date?->isoFormat('MMM');
+    }
+
+    public function getStartDateYearAttribute()
+    {
+        return $this->localized_start_date?->isoFormat('YYYY');
+    }
+
+    public function getStartTimeDisplayAttribute()
+    {
+        return $this->start_time?->format('H:i');
+    }
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);

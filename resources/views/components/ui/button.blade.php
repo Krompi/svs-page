@@ -4,7 +4,7 @@
 ])
 
 @php
-    $baseClasses = 'px-6 py-3 rounded-lg font-medium inline-block transition-colors';
+    $baseClasses = 'px-6 py-3 rounded-lg font-medium inline-block transition-colors hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary';
 
     $variants = [
         'primary' => 'bg-primary text-white hover:bg-opacity-90',
