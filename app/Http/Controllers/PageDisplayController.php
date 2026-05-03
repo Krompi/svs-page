@@ -50,7 +50,7 @@ class PageDisplayController extends Controller
                         ->orWhere('publish_end_date', '>=', now());
                 })
                 ->where('start_date', '>=', now())
-                ->orderBy('start_date', 'desc')
+                ->orderBy('start_date', 'asc')
                 ->take(2)
                 ->get();
                 // dd($events);

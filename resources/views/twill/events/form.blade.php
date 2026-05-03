@@ -46,6 +46,7 @@ $wysiwygOptions = [
     @formField('medias', [
         'name' => 'cover',
         'label' => 'Cover Image',
+        'max' => 1,
     ])
 
     @formField('date_picker', [

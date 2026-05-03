@@ -47,7 +47,18 @@ class Event extends Model
 
     public $translatedAttributes = [
         'title',
-        'description',
+        'teaser',
+    ];
+
+    public array $mediasParams = [
+        'cover' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ],
+            ],
+        ],
     ];
 
     public $slugAttributes = [

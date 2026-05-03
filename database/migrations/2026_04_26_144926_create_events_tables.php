@@ -12,9 +12,9 @@ return new class extends Migration
             // this will create an id, a "published" column, and soft delete and timestamps columns
             createDefaultTableFields($table);
             
-            $table->text('title');
-            $table->text('teaser')->nullable();
-            $table->text('description')->nullable();
+            // $table->text('title');
+            // $table->text('teaser')->nullable();
+            // $table->text('description')->nullable();
             
             // add those 2 columns to enable publication timeframe fields (you can use publish_start_date only if you don't need to provide the ability to specify an end date)
             $table->timestamp('publish_start_date')->nullable();

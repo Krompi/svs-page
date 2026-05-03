@@ -8,13 +8,17 @@ class EventRequest extends Request
 {
     public function rulesForCreate()
     {
-        return [
-        ];
+        return $this->rulesForTranslatedFields([], [
+            'title' => 'required',
+            'teaser' => 'nullable',
+        ]);
     }
 
     public function rulesForUpdate()
     {
-        return [
-        ];
+        return $this->rulesForTranslatedFields([], [
+            'title' => 'required',
+            'teaser' => 'nullable',
+        ]);
     }
 }

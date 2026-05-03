@@ -11,6 +11,7 @@ return [
     |
      */
     'locales' => [
+        'de',
         'en',
     ],
 
@@ -36,7 +37,7 @@ return [
     | you can specify what default should be used here.
     |
      */
-    'locale' => null,
+    'locale' => 'de',
 
     /*
     |--------------------------------------------------------------------------
@@ -73,7 +74,7 @@ return [
     | set it to false.
     |
      */
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'de',
 
     /*
     |--------------------------------------------------------------------------
