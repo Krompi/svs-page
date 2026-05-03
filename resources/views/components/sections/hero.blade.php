@@ -10,12 +10,12 @@
             </p>
 
             <div class="flex gap-4">
-                <a href="#" class="bg-primary text-white px-5 py-3 rounded-lg">
+                <x-ui.button href="#" variant="primary">
                     Veranstaltungen ansehen
-                </a>
-                <a href="#" class="bg-accent px-5 py-3 rounded-lg font-medium">
+                </x-ui.button>
+                <x-ui.button href="#" variant="accent">
                     Mehr über uns
-                </a>
+                </x-ui.button>
             </div>
         </div>
 

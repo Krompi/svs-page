@@ -3,8 +3,8 @@
         <h2 class="text-xl font-semibold">
             Mitmachen und unsere Stadt gestalten
         </h2>
-        <a href="#" class="bg-black text-white px-6 py-3 rounded-lg">
+        <x-ui.button href="#" variant="black">
             Kontakt aufnehmen
-        </a>
+        </x-ui.button>
     </div>
 </section>
