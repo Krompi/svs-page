@@ -1,5 +1,3 @@
-<section class="bg-white">
-    <div class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-10">
 
         <div>
             <h2 class="text-2xl font-semibold mb-6">Aktuelles</h2>
@@ -57,10 +55,9 @@
                     </div>
                 </article>
 
+                <a href="{{ route('events.index') }}"
+                    class="text-primary border-b-2 border-transparent hover:border-primary font-semibold">Alle ansehen
+                    →</a>
+
             </div>
         </div>
-
-        <x-sections.topics />
-
-    </div>
-</section>

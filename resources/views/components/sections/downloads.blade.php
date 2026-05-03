@@ -1,4 +1,4 @@
-<section class="max-w-7xl mx-auto px-6 py-16">
+<div>
     <div class="flex justify-between mb-6">
         <h2 class="text-2xl font-semibold">Downloads</h2>
         <a href="#" class="text-primary text-sm">Alle →</a>
@@ -20,4 +20,4 @@
             <span class="text-primary">PDF</span>
         </div>
     </div>
-</section>
+</div>
