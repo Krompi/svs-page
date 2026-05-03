@@ -1,15 +1,8 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <title>Demo page</title>
-</head>
-<body>
-<div>
-    Example preview. See <a href="https://twillcms.com/docs/modules/revisions-and-previewing.html">documentation.</a>
-    <br />
-    {{ $item->title }}
-    <br />
-    {{ $item->description }}
-</div>
-</body>
-</html>
+<x-layout.app :title="$item->title">
+    <div class="max-w-7xl mx-auto px-6 py-16">
+        <h1 class="text-3xl font-bold mb-4">{{ $item->title }}</h1>
+        <div class="prose max-w-none">
+            {{ $item->description }}
+        </div>
+    </div>
+</x-layout.app>
