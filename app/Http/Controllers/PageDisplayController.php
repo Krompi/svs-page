@@ -53,7 +53,7 @@ class PageDisplayController extends Controller
                 ->orderBy('start_date', 'asc')
                 ->take(2)
                 ->get();
-                // dd($events);
+                // dd($events->first()->start_date->locale('de')->isoFormat('MMM'));
  
             if ($frontPage->published) {
                 return view('site.home', ['item' => $frontPage, 'events' => $events]);
