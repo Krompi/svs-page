@@ -113,4 +113,15 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Contact Form Recipient
+    |--------------------------------------------------------------------------
+    |
+    | This address will receive all submissions from the contact form.
+    |
+    */
+
+    'contact_recipient' => env('CONTACT_FORM_RECIPIENT'),
+
 ];
