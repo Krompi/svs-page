@@ -38,3 +38,14 @@ return [
         ],
     ]
 ];
+/*
+Beispiel für die Verwendung von Routen-Namen:
+[
+    'label' => 'Start',
+    'route' => 'home',
+],
+[
+    'label' => 'Externer Link',
+    'url' => 'https://example.com',
+],
+*/

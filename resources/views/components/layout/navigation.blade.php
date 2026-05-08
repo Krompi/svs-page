@@ -16,10 +16,13 @@
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex space-x-8 text-sm font-medium">
             @foreach(config('navigation.menu') as $item)
+                @php
+                    $href = isset($item['route']) ? route($item['route']) : ($item['url'] ?? '#');
+                @endphp
                 @if(isset($item['children']) && count($item['children']) > 0)
                     <x-ui.dropdown :label="$item['label']" :children="$item['children']" />
                 @else
-                    <a href="{{ $item['url'] }}" class="hover:text-primary transition-colors duration-200">
+                    <a href="{{ $href }}" class="hover:text-primary transition-colors duration-200">
                         {{ $item['label'] }}
                     </a>
                 @endif
@@ -41,6 +44,9 @@
     <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
         <nav class="px-6 py-4 space-y-4">
             @foreach(config('navigation.menu') as $item)
+                @php
+                    $href = isset($item['route']) ? route($item['route']) : ($item['url'] ?? '#');
+                @endphp
                 @if(isset($item['children']) && count($item['children']) > 0)
                     <div class="space-y-2">
                         <button type="button" class="dropdown-toggle w-full flex justify-between items-center text-left font-medium hover:text-primary" aria-expanded="false">
@@ -51,14 +57,17 @@
                         </button>
                         <div class="hidden pl-4 space-y-2 border-l-2 border-gray-100">
                             @foreach($item['children'] as $child)
-                                <a href="{{ $child['url'] }}" class="block text-sm text-gray-600 hover:text-primary">
+                                @php
+                                    $childHref = isset($child['route']) ? route($child['route']) : ($child['url'] ?? '#');
+                                @endphp
+                                <a href="{{ $childHref }}" class="block text-sm text-gray-600 hover:text-primary">
                                     {{ $child['label'] }}
                                 </a>
                             @endforeach
                         </div>
                     </div>
                 @else
-                    <a href="{{ $item['url'] }}" class="block font-medium hover:text-primary transition-colors duration-200">
+                    <a href="{{ $href }}" class="block font-medium hover:text-primary transition-colors duration-200">
                         {{ $item['label'] }}
                     </a>
                 @endif
