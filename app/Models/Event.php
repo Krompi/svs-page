@@ -112,16 +112,4 @@ class Event extends Model
         return $this->start_time?->format('H:i');
     }
 
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-
-        if (! isset($this->attributes['publish_start_date']) || empty($this->attributes['publish_start_date'])) {
-            $this->attributes['publish_start_date'] = now();
-        }
-
-        if (! isset($this->attributes['publish_end_date']) || empty($this->attributes['publish_end_date'])) {
-            $this->attributes['publish_end_date'] = now()->addYear();
-        }
-    }
 }

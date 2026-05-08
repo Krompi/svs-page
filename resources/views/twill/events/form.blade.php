@@ -65,6 +65,7 @@ $wysiwygOptions = [
     @formField('date_picker', [
         'name' => 'start_date',
         'label' => 'Start Datum',
+        'withTime' => false,
     ])
 
     @formField('date_picker', [
@@ -76,6 +77,7 @@ $wysiwygOptions = [
     @formField('date_picker', [
         'name' => 'end_date',
         'label' => 'Ende Datum',
+        'withTime' => false,
     ])
 
     @formField('date_picker', [
