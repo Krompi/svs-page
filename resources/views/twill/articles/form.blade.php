@@ -29,7 +29,7 @@
             'max' => 1,
         ])
 
-        @formField('date_picker', [
+        {{-- @formField('date_picker', [
             'name' => 'publish_start_date',
             'label' => 'Veröffentlicht von',
         ])
@@ -37,6 +37,6 @@
         @formField('date_picker', [
             'name' => 'publish_end_date',
             'label' => 'Veröffentlicht bis',
-        ])
+        ]) --}}
     </a17-fieldset>
 @stop

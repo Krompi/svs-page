@@ -63,7 +63,7 @@
     </div>
     <div class="p-5 pt-0">
         <a href="{{ route('events.show', ['slug' => $event->slug]) }}"
-            class="text-primary hover:border-b-2 hover:border-primary font-semibold inline-flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-primary">
+            class="text-primary border-b-2 border-transparent hover:border-primary font-semibold inline-flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-primary">
             Details →
         </a>
     </div>

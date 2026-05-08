@@ -1,9 +1,9 @@
 @props(['article'])
 
-<article class="flex group">
+<article class="flex group rounded border border-gray-300 hover:shadow-lg transition-shadow duration-300 overflow-hidden">
     <div class="w-1/3 shrink-0">
         @if ($article->cover_preview_url)
-            <img class="object-cover w-full rounded aspect-3/2 group-hover:shadow-md transition-shadow" src="{{ $article->cover_preview_url }}"
+            <img class="object-cover w-full rounded-l h-full " src="{{ $article->cover_preview_url }}"
                 alt="{{ $article->cover_alt }}">
         @else
             <div class="w-full rounded aspect-3/2 bg-gray-200 flex items-center justify-center text-gray-400">
@@ -13,7 +13,7 @@
             </div>
         @endif
     </div>
-    <div class="flex flex-col justify-center pl-6 grow">
+    <div class="flex flex-col justify-center pl-6 py-4 grow">
         <p class="text-sm text-gray-500 mb-1">{{ $article->publish_start_date?->locale('de')->isoFormat('DD. MMMM YYYY') }}</p>
         <h3 class="mb-2 font-semibold text-xl group-hover:text-primary transition-colors line-clamp-2">{{ $article->title }}</h3>
         <p class="mb-3 text-gray-700 line-clamp-2">{{ $article->teaser }}</p>
