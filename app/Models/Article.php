@@ -12,23 +12,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use A17\Twill\Models\Model;
 use Spatie\LaravelPackageTools\Concerns\Package\HasBladeComponents;
 
-class Event extends Model
+class Article extends Model
 {
     use HasBlocks, HasTranslation, HasSlug, HasMedias, HasFiles, HasRevisions, HasFactory, HasBladeComponents;
 
     protected $fillable = [
-        'title',
-        'description',
         'published',
+        'title',
         'teaser',
         'publish_start_date',
         'publish_end_date',
-        'start_date',
-        'start_time',
-        'end_date',
-        'end_time',
-        'location',
-        'location_url',
     ];
 
     protected $attributes = [
@@ -37,10 +30,6 @@ class Event extends Model
     ];
 
     protected $casts = [
-        'start_date' => 'date',
-        'end_date' => 'date',
-        'start_time' => 'datetime:H:i',
-        'end_time' => 'datetime:H:i',
         'publish_start_date' => 'datetime',
         'publish_end_date' => 'datetime',
     ];
@@ -83,33 +72,6 @@ class Event extends Model
     public function getCoverAltAttribute()
     {
         return $this->cover?->alt_text ?? $this->title;
-    }
-
-    public function getLocalizedStartDateAttribute()
-    {
-        return $this->start_date
-            ? $this->start_date->locale(app()->getLocale())
-            : null;
-    }
-
-    public function getStartDateDayAttribute()
-    {
-        return $this->localized_start_date?->isoFormat('DD');
-    }
-
-    public function getStartDateMonthAttribute()
-    {
-        return $this->localized_start_date?->isoFormat('MMM');
-    }
-
-    public function getStartDateYearAttribute()
-    {
-        return $this->localized_start_date?->isoFormat('YYYY');
-    }
-
-    public function getStartTimeDisplayAttribute()
-    {
-        return $this->start_time?->format('H:i');
     }
 
 }

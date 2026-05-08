@@ -49,7 +49,7 @@ $wysiwygOptions = [
         'max' => 1,
     ])
 
-    @formField('date_picker', [
+    {{-- @formField('date_picker', [
         'name' => 'publish_start_date',
         'label' => 'Veröffentlicht von',
     ])
@@ -57,7 +57,7 @@ $wysiwygOptions = [
     @formField('date_picker', [
         'name' => 'publish_end_date',
         'label' => 'Veröffentlicht bis',
-    ])
+    ]) --}}
     </a17-fieldset>
     
 <a17-fieldset title="Datum" id="date">
@@ -65,6 +65,7 @@ $wysiwygOptions = [
     @formField('date_picker', [
         'name' => 'start_date',
         'label' => 'Start Datum',
+        'withTime' => false,
     ])
 
     @formField('date_picker', [
@@ -76,6 +77,7 @@ $wysiwygOptions = [
     @formField('date_picker', [
         'name' => 'end_date',
         'label' => 'Ende Datum',
+        'withTime' => false,
     ])
 
     @formField('date_picker', [

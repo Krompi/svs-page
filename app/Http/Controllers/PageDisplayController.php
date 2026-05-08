@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use A17\Twill\Facades\TwillAppSettings;
+use App\Models\Article;
 use App\Models\Event;
 use App\Repositories\EventRepository;
 use App\Repositories\PageRepository;
@@ -22,24 +23,21 @@ class PageDisplayController extends Controller
  
         return view('site.page', ['item' => $page]);
     }
-    public function event(string $slug, EventRepository $eventRepository): View
-    {
-        $event = $eventRepository->forSlug($slug);
-        // dd($event->renderBlocks());
- 
-        if (!$event) {
-            abort(404);
-        }
- 
-        return view('site.page', ['item' => $event]);
-    }
 
     public function home(): View
     {
-        if (TwillAppSettings::get('homepage.homepage.page')->isNotEmpty()) {
-            /** @var \App\Models\Page $frontPage */
-            $frontPage = TwillAppSettings::get('homepage.homepage.page')->first();
-            
+        $frontPage = null;
+        try {
+            $homepageSetting = TwillAppSettings::get('homepage.homepage.page');
+            if ($homepageSetting && $homepageSetting->isNotEmpty()) {
+                /** @var \App\Models\Page $frontPage */
+                $frontPage = $homepageSetting->first();
+            }
+        } catch (\Exception $e) {
+            // Settings not yet initialized
+        }
+
+        if ($frontPage) {
             $events = Event::where('published', true)
                 ->where(function ($query) {
                     $query->whereNull('publish_start_date')
@@ -53,13 +51,45 @@ class PageDisplayController extends Controller
                 ->orderBy('start_date', 'asc')
                 ->take(2)
                 ->get();
-                // dd($events->first()->start_date->locale('de')->isoFormat('MMM'));
+
+            $articles = Article::where('published', true)
+                ->where(function ($query) {
+                    $query->whereNull('publish_start_date')
+                        ->orWhere('publish_start_date', '<=', now());
+                })
+                ->where(function ($query) {
+                    $query->whereNull('publish_end_date')
+                        ->orWhere('publish_end_date', '>=', now());
+                })
+                ->orderBy('publish_start_date', 'desc')
+                ->take(4)
+                ->get();
  
             if ($frontPage->published) {
-                return view('site.home', ['item' => $frontPage, 'events' => $events]);
+                return view('site.home', [
+                    'item' => $frontPage,
+                    'events' => $events,
+                    'articles' => $articles
+                ]);
             }
         }
- 
-        abort(404);
+
+        // Fallback for when no front page is configured or it is not published
+        $events = Event::where('published', true)
+            ->where('start_date', '>=', now())
+            ->orderBy('start_date', 'asc')
+            ->take(2)
+            ->get();
+
+        $articles = Article::where('published', true)
+            ->orderBy('publish_start_date', 'desc')
+            ->take(4)
+            ->get();
+
+        return view('site.home', [
+            'item' => null,
+            'events' => $events,
+            'articles' => $articles
+        ]);
     }
 }
