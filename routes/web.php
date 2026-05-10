@@ -4,6 +4,7 @@ use App\Http\Controllers\ArticleDisplayController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\EventDisplayController;
 use App\Http\Controllers\PageDisplayController;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\PageDisplayController::class, 'home'])->name('frontend.home');

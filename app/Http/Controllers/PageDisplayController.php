@@ -20,8 +20,13 @@ class PageDisplayController extends Controller
         if (!$page) {
             abort(404);
         }
- 
-        return view('site.page', ['item' => $page]);
+
+        $blocksHtml = $page->blocks->isNotEmpty() ? $page->renderBlocks() : '';
+
+        return view('site.page', [
+            'item' => $page,
+            'blocksHtml' => $blocksHtml,
+        ]);
     }
 
     public function home(): View

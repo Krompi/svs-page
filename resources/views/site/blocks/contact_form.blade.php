@@ -1,11 +1,11 @@
 <div class="contact-form-block py-8">
-    @if($block->input('title'))
-        <h2 class="text-2xl font-bold mb-4">{{ $block->input('title') }}</h2>
+    @if($block->translatedInput('title'))
+        <h2 class="text-2xl font-bold mb-4">{{ $block->translatedInput('title') }}</h2>
     @endif
 
-    @if($block->input('text'))
+    @if($block->translatedInput('text'))
         <div class="prose mb-6">
-            {!! $block->input('text') !!}
+            {!! $block->translatedInput('text') !!}
         </div>
     @endif
 
@@ -71,21 +71,24 @@
         </div>
 
         <div class="pt-2">
-            <x-ui.button type="submit" variant="primary">
+            <button type="submit" class="px-6 py-3 rounded-lg font-medium inline-block transition-colors hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary bg-primary text-white hover:bg-opacity-90">
                 Nachricht senden
-            </x-ui.button>
+            </button>
         </div>
     </form>
 </div>
 
-@push('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    (function() {
         const whatsappCheckbox = document.getElementById('whatsapp');
         const phoneField = document.getElementById('phone-field');
         const phoneInput = document.getElementById('phone');
 
-        if (whatsappCheckbox && phoneField) {
+        function bindContactForm() {
+            if (!whatsappCheckbox || !phoneField || !phoneInput) {
+                return;
+            }
+
             whatsappCheckbox.addEventListener('change', function() {
                 if (this.checked) {
                     phoneField.classList.remove('hidden');
@@ -96,6 +99,11 @@
                 }
             });
         }
-    });
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', bindContactForm);
+        } else {
+            bindContactForm();
+        }
+    })();
 </script>
-@endpush
