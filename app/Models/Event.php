@@ -112,4 +112,9 @@ class Event extends Model
         return $this->start_time?->format('H:i');
     }
 
+    public function articles()
+    {
+        return $this->belongsToMany(Article::class);
+    }
+
 }

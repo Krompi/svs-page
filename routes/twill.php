@@ -1,6 +1,7 @@
 <?php
 
 use A17\Twill\Facades\TwillRoutes;
+use Illuminate\Support\Facades\Route;
 
 // Register Twill routes here eg.
 // TwillRoutes::module('posts');
@@ -8,4 +9,7 @@ use A17\Twill\Facades\TwillRoutes;
 TwillRoutes::module('pages');
 TwillRoutes::module('menuLinks');
 TwillRoutes::module('events');
+
+Route::name('twill.events.createArticle')->post('events/createArticle/{id}', 'EventController@createArticle');
+
 TwillRoutes::module('articles');
