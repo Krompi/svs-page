@@ -9,8 +9,8 @@
             <h3 class="font-semibold mb-2">Navigation</h3>
             <ul class="space-y-1">
                 <li><a href="/">Start</a></li>
-                <li><a href="#">Aktuelles</a></li>
-                <li><a href="#">Veranstaltungen</a></li>
+                <li><a href="{{ route('articles.index') }}">Aktuelles</a></li>
+                <li><a href="{{ route('events.index') }}">Veranstaltungen</a></li>
             </ul>
         </div>
 

@@ -60,7 +60,7 @@ return [
         ],
         [
             'label' => 'Kontakt',
-            'url' => '#',
+            'url' => '/kontakt',
         ],
     ]
 ];
