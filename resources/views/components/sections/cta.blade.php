@@ -3,7 +3,7 @@
         <h2 class="text-xl font-semibold">
             Mitmachen und unsere Stadt gestalten
         </h2>
-        <x-ui.button href="#" variant="black">
+        <x-ui.button href="/kontakt" variant="black">
             Kontakt aufnehmen
         </x-ui.button>
     </div>
