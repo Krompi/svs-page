@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Twill;
 
-use A17\Twill\Http\Controllers\Admin\ModuleController as BaseModuleController;
 use A17\Twill\Models\Contracts\TwillModelContract;
+use A17\Twill\Http\Controllers\Admin\ModuleController as BaseModuleController;
 use A17\Twill\Services\Forms\Fields\BlockEditor;
 use A17\Twill\Services\Forms\Fields\DatePicker;
 use A17\Twill\Services\Forms\Fields\Input;
@@ -70,6 +70,57 @@ class EventController extends BaseModuleController
 
         $form->addFieldset(
             Fieldset::make()
+                ->title('Meta')
+                ->id('meta')
+                ->fields([
+                    Medias::make()
+                        ->name('cover')
+                        ->label('Cover Image')
+                        ->max(1),
+                ])
+        );
+
+        $form->addFieldset(
+            Fieldset::make()
+                ->title('Datum')
+                ->id('date')
+                ->fields([
+                    DatePicker::make()
+                        ->name('start_date')
+                        ->label('Start Datum')
+                        ->withoutTime(),
+                    DatePicker::make()
+                        ->name('start_time')
+                        ->label('Start Zeit')
+                        ->timeOnly(),
+                    DatePicker::make()
+                        ->name('end_date')
+                        ->label('Ende Datum')
+                        ->withoutTime(),
+                    DatePicker::make()
+                        ->name('end_time')
+                        ->label('Ende Zeit')
+                        ->timeOnly(),
+                ])
+        );
+
+        $form->addFieldset(
+            Fieldset::make()
+                ->title('Ort')
+                ->id('location')
+                ->fields([
+                    Input::make()
+                        ->name('location')
+                        ->label('Ort'),
+                    Input::make()
+                        ->name('location_url')
+                        ->label('Ort URL')
+                        ->type('url'),
+                ])
+        );
+
+        $form->addFieldset(
+            Fieldset::make()
                 ->title('Artikel-Verknüpfung')
                 ->id('article-actions')
                 ->fields([
@@ -83,6 +134,26 @@ class EventController extends BaseModuleController
         );
 
         return $form;
+    }
+
+    public function getForm(TwillModelContract $model): Form
+    {
+        return Form::make([
+            Input::make()
+                ->name('title')
+                ->label('Titel')
+                ->required()
+                ->translatable(),
+            Input::make()
+                ->name('teaser')
+                ->label('Teaser')
+                ->type('textarea')
+                ->rows(3)
+                ->maxlength(200)
+                ->note('Wird auf der Startseite angezeigt')
+                ->translatable(),
+            BlockEditor::make()
+        ]);
     }
 
     public function getCreateForm(): Form
@@ -114,7 +185,10 @@ class EventController extends BaseModuleController
         $article = $articleRepository->create($articleFields);
 
         // Copy cover image if exists
-        $cover = $event->medias->where('pivot.role', 'cover')->first();
+        $cover = $event->medias->filter(function($media) {
+            return $media->pivot->role === 'cover';
+        })->first();
+
         if ($cover) {
             $article->medias()->attach($cover->id, [
                 'role' => 'cover',

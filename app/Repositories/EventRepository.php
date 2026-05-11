@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Repositories\Behaviors\HandleBrowsers;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleTranslations;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
@@ -14,7 +15,7 @@ use App\Models\Event;
 
 class EventRepository extends ModuleRepository
 {
-    use HandleBlocks, HandleTranslations, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions;
+    use HandleBlocks, HandleTranslations, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleBrowsers;
 
     public function __construct(Event $model)
     {

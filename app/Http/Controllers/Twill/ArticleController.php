@@ -49,11 +49,15 @@ class ArticleController extends BaseModuleController
             Input::make()
                 ->name('title')
                 ->label('Titel')
+                ->required()
                 ->translatable(),
             Input::make()
                 ->name('teaser')
                 ->label('kurzer Teaser')
                 ->type('textarea')
+                ->rows(3)
+                ->maxlength(200)
+                ->note('Wird auf der Startseite angezeigt')
                 ->translatable(),
             Medias::make()
                 ->name('cover')

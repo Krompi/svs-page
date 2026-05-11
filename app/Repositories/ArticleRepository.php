@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Repositories\Behaviors\HandleBrowsers;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleTranslations;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
@@ -13,7 +14,7 @@ use App\Models\Article;
 
 class ArticleRepository extends ModuleRepository
 {
-    use HandleBlocks, HandleTranslations, HandleSlugs, HandleMedias, HandleRevisions;
+    use HandleBlocks, HandleTranslations, HandleSlugs, HandleMedias, HandleRevisions, HandleBrowsers;
 
     public function __construct(Article $model)
     {
