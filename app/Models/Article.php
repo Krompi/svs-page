@@ -74,4 +74,9 @@ class Article extends Model
         return $this->cover?->alt_text ?? $this->title;
     }
 
+    public function events()
+    {
+        return $this->belongsToMany(Event::class);
+    }
+
 }
