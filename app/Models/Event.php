@@ -29,6 +29,7 @@ class Event extends Model
         'end_time',
         'location',
         'location_url',
+        'main_topic_id',
     ];
 
     protected $attributes = [
@@ -122,6 +123,16 @@ class Event extends Model
     public function articles()
     {
         return $this->belongsToMany(Article::class);
+    }
+
+    public function mainTopic()
+    {
+        return $this->belongsTo(Topic::class, 'main_topic_id');
+    }
+
+    public function topics()
+    {
+        return $this->belongsToMany(Topic::class);
     }
 
 }

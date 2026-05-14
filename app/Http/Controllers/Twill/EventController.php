@@ -9,6 +9,7 @@ use A17\Twill\Services\Forms\Fields\DatePicker;
 use A17\Twill\Services\Forms\Fields\Input;
 use A17\Twill\Services\Forms\Fields\Medias;
 use A17\Twill\Services\Forms\Fields\Browser;
+use A17\Twill\Services\Forms\Fields\Select;
 use A17\Twill\Services\Forms\Fields\Wysiwyg;
 use A17\Twill\Services\Forms\Fieldset;
 use A17\Twill\Services\Forms\Fieldsets;
@@ -67,6 +68,31 @@ class EventController extends BaseModuleController
     public function getSideFieldsets(TwillModelContract $model): Form
     {
         $form = parent::getSideFieldsets($model);
+
+        $form->addFieldset(
+            Fieldset::make()
+                ->title('Themen')
+                ->id('topics')
+                ->fields([
+                    Select::make()
+                        ->name('main_topic_id')
+                        ->label('Hauptthema')
+                        ->options(
+                            \App\Models\Topic::published()->orderBy('position')->get()->map(function ($topic) {
+                                return [
+                                    'value' => $topic->id,
+                                    'label' => $topic->title,
+                                ];
+                            })->toArray()
+                        )
+                        ->required(false),
+                    Browser::make()
+                        ->name('topics')
+                        ->modules([\App\Models\Topic::class])
+                        ->label('Nebenthemen')
+                        ->max(10)
+                ])
+        );
 
         $form->addFieldset(
             Fieldset::make()
