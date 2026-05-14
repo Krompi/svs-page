@@ -10,6 +10,6 @@ TwillRoutes::module('pages');
 TwillRoutes::module('menuLinks');
 TwillRoutes::module('events');
 
-Route::name('twill.events.createArticle')->post('events/createArticle/{id}', 'EventController@createArticle');
+Route::name('events.createArticle')->post('events/createArticle/{id}', 'EventController@createArticle');
 
 TwillRoutes::module('articles');

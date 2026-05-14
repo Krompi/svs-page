@@ -1,6 +1,6 @@
 @if(isset($item) && $item->events->isNotEmpty())
     <div class="form-group">
-        <p><strong>Verknüpfte Events:</strong></p>
+        <p><strong>Verknüpfte Events-:</strong></p>
         <ul>
             @foreach($item->events as $event)
                 <li>

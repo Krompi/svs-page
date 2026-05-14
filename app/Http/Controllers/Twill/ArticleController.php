@@ -28,10 +28,22 @@ class ArticleController extends BaseModuleController
 
         $form->addFieldset(
             Fieldset::make()
+                ->title('Meta')
+                ->id('meta')
+                ->fields([
+                    Medias::make()
+                        ->name('cover')
+                        ->label('Cover Image')
+                        ->max(1),
+                ])
+        );
+
+        $form->addFieldset(
+            Fieldset::make()
                 ->title('Event-Verknüpfung')
                 ->id('linked-events')
                 ->fields([
-                    BladePartial::make()->view('twill.articles.linked_events_sidebar'),
+                    // BladePartial::make()->view('twill.articles.linked_events_sidebar'),
                     Browser::make()
                         ->name('events')
                         ->modules([\App\Models\Event::class])
@@ -59,9 +71,6 @@ class ArticleController extends BaseModuleController
                 ->maxlength(200)
                 ->note('Wird auf der Startseite angezeigt')
                 ->translatable(),
-            Medias::make()
-                ->name('cover')
-                ->label('Cover'),
             BlockEditor::make()
         ]);
     }

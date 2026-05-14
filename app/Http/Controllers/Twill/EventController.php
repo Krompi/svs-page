@@ -121,10 +121,10 @@ class EventController extends BaseModuleController
 
         $form->addFieldset(
             Fieldset::make()
-                ->title('Artikel-Verknüpfung')
+                ->title('Artikel-Verknüpfungen')
                 ->id('article-actions')
                 ->fields([
-                    BladePartial::make()->view('twill.events.create_article_sidebar'),
+                    // BladePartial::make()->view('twill.events.create_article_sidebar'),
                     Browser::make()
                         ->name('articles')
                         ->modules([\App\Models\Article::class])
@@ -174,15 +174,16 @@ class EventController extends BaseModuleController
 
     public function createArticle(int $id, ArticleRepository $articleRepository): RedirectResponse
     {
-        $event = $this->repository->getById($id, ['medias']);
+        $event = $this->repository->getById($id, ['medias', 'translations']);
 
-        $articleFields = [
-            'published' => false,
-            'title' => $event->getTranslations('title'),
-            'teaser' => $event->getTranslations('teaser'),
-        ];
+        $article = $articleRepository->create(['published' => false]);
 
-        $article = $articleRepository->create($articleFields);
+        $translations = $event->getTranslationsArray();
+        foreach ($translations as $locale => $attributes) {
+            $translation = $article->translateOrNew($locale);
+            $translation->fill($attributes);
+            $translation->save();
+        }
 
         // Copy cover image if exists
         $cover = $event->medias->filter(function($media) {
