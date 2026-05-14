@@ -1,7 +1,7 @@
 <section class="relative bg-gray-200">
-    <div class="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-10 items-center">
+    <div class="max-w-7xl mx-auto px-6 py-20 relative z-40">
 
-        <div class="bg-white p-8 rounded-xl shadow z-40">
+        <div class="bg-white p-8 rounded-xl shadow w-full md:w-1/2 lg:w-1/3">
             <h1 class="text-2xl md:text-3xl font-bold mb-4">
                 Wir gestalten die Zukunft unserer Stadt
             </h1>
@@ -9,7 +9,7 @@
                 Gemeinsam setzen wir uns für eine lebenswerte, nachhaltige Stadt ein.
             </p>
 
-            <div class="flex gap-4">
+            <div class="flex flex-col gap-4">
                 <x-ui.button href="{{ route('events.index') }}" variant="primary">
                     Veranstaltungen ansehen
                 </x-ui.button>

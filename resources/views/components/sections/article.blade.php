@@ -1,6 +1,6 @@
 @props(['articles' => []])
 <div>
-    <h2 class="text-2xl font-semibold mb-6">Aktuelles</h2>
+    <h2 class="text-2xl font-semibold mb-6">Meldungen</h2>
 
     <div class="space-y-6">
         @forelse($articles as $article)

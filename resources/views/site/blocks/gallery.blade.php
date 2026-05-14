@@ -1,10 +1,12 @@
-<div class="py-12">
+<div class="my-12">
     @if($block->translatedInput('title'))
-        <h2 class="text-3xl font-bold mb-4">{{ $block->translatedInput('title') }}</h2>
+        <div class="prose max-w-none mb-2">
+            <h2>{{ $block->translatedInput('title') }}</h2>
+        </div>
     @endif
 
     @if($block->translatedInput('intro'))
-        <div class="prose max-w-none mb-8">
+        <div class="prose max-w-none mb-4 text-gray-700 italic">
             {!! $block->translatedInput('intro') !!}
         </div>
     @endif
@@ -12,7 +14,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="gallery-{{ $block->id }}">
         @foreach($block->imagesAsArrays('gallery', 'default') as $index => $image)
             <a href="{{ $image['src'] }}"
-               class="gallery-item block overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
+               class="gallery-item block overflow-hidden rounded-sm hover:shadow transition-shadow duration-300 border border-gray-300"
                data-index="{{ $index }}"
                data-gallery="gallery-{{ $block->id }}">
                 <img src="{{ $image['src'] }}" alt="{{ $image['alt'] }}" class="w-full aspect-video object-cover">

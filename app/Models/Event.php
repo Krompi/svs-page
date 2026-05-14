@@ -92,6 +92,13 @@ class Event extends Model
             : null;
     }
 
+    public function getLocalizedEndDateAttribute()
+    {
+        return $this->end_date
+            ? $this->end_date->locale(app()->getLocale())
+            : null;
+    }
+
     public function getStartDateDayAttribute()
     {
         return $this->localized_start_date?->isoFormat('DD');
