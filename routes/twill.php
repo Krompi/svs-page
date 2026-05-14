@@ -13,3 +13,5 @@ TwillRoutes::module('events');
 Route::name('events.createArticle')->post('events/createArticle/{id}', 'EventController@createArticle');
 
 TwillRoutes::module('articles');
+
+TwillRoutes::module('topics');

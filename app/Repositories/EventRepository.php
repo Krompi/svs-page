@@ -25,6 +25,7 @@ class EventRepository extends ModuleRepository
     public function afterSave(TwillModelContract $model, array $fields): void
     {
         $this->updateBrowser($model, $fields, 'articles');
+        $this->updateBrowser($model, $fields, 'topics');
         parent::afterSave($model, $fields);
     }
 
@@ -32,6 +33,7 @@ class EventRepository extends ModuleRepository
     {
         $fields = parent::getFormFields($model);
         $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($model, 'articles');
+        $fields['browsers']['topics'] = $this->getFormFieldsForBrowser($model, 'topics');
         return $fields;
     }
 }

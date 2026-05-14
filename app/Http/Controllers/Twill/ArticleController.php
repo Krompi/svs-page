@@ -7,6 +7,7 @@ use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Services\Forms\BladePartial;
 use A17\Twill\Services\Forms\Fields\BlockEditor;
 use A17\Twill\Services\Forms\Fields\Browser;
+use A17\Twill\Services\Forms\Fields\Select;
 use A17\Twill\Services\Forms\Fields\Input;
 use A17\Twill\Services\Forms\Fields\Medias;
 use A17\Twill\Services\Forms\Fieldset;
@@ -25,6 +26,31 @@ class ArticleController extends BaseModuleController
     public function getSideFieldsets(TwillModelContract $model): Form
     {
         $form = parent::getSideFieldsets($model);
+
+        $form->addFieldset(
+            Fieldset::make()
+                ->title('Themen')
+                ->id('topics')
+                ->fields([
+                    Select::make()
+                        ->name('main_topic_id')
+                        ->label('Hauptthema')
+                        ->options(
+                            \App\Models\Topic::published()->orderBy('position')->get()->map(function ($topic) {
+                                return [
+                                    'value' => $topic->id,
+                                    'label' => $topic->title,
+                                ];
+                            })->toArray()
+                        )
+                        ->addOptional(),
+                    Browser::make()
+                        ->name('topics')
+                        ->modules([\App\Models\Topic::class])
+                        ->label('Nebenthemen')
+                        ->max(10)
+                ])
+        );
 
         $form->addFieldset(
             Fieldset::make()

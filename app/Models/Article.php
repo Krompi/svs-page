@@ -22,6 +22,7 @@ class Article extends Model
         'teaser',
         'publish_start_date',
         'publish_end_date',
+        'main_topic_id',
     ];
 
     protected $attributes = [
@@ -77,6 +78,16 @@ class Article extends Model
     public function events()
     {
         return $this->belongsToMany(Event::class);
+    }
+
+    public function mainTopic()
+    {
+        return $this->belongsTo(Topic::class, 'main_topic_id');
+    }
+
+    public function topics()
+    {
+        return $this->belongsToMany(Topic::class);
     }
 
 }
