@@ -1,5 +1,5 @@
 @twillBlockTitle('Gallery')
-@twillBlockIcon('image')
+@twillBlockIcon('media-grid')
 @twillBlockGroup('app')
 
 <x-twill::input
