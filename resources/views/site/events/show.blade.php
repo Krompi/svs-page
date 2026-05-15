@@ -7,10 +7,13 @@
             <div class="order-none md:order-last w-full md:w-1/3">
                 @if ($item->cover_url)
                     <div class="overflow-hidden mb-4">
-                        <img src="{{ $item->cover_url }}" alt="{{ $item->cover_alt }}"
-                            class="w-full h-auto object-cover max-h-[500px]">
+                        <a href="{{ $item->cover_url }}"
+                            class="lightbox-item block rounded-sm hover:shadow transition-shadow duration-300 border border-gray-300"
+                            data-index="0" data-lightbox="lightbox-cover">
+                            <img src="{{ $item->cover_url }}" alt="{{ $item->cover_alt }}" class="w-full aspect-video object-cover" />
+                        </a>
                     </div>
-                @endif 
+                @endif
                 @if ($item->end_date)
                     <div class="flex items-center gap-3 mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -18,9 +21,9 @@
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008Zm0 2.25h.008v.008H9.75v-.008Zm2.25-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
                         </svg>
-                        <span
-                            class="font-medium text-gray-900">
-                            {{ $item->localized_start_date?->isoFormat('DD. MMMM YYYY') }} - {{ $item->localized_end_date?->isoFormat('DD. MMMM YYYY') }}
+                        <span class="font-medium text-gray-900">
+                            {{ $item->localized_start_date?->isoFormat('DD. MMMM YYYY') }} -
+                            {{ $item->localized_end_date?->isoFormat('DD. MMMM YYYY') }}
                         </span>
                     </div>
                 @else
@@ -37,7 +40,7 @@
                                 class="font-medium text-gray-900">{{ $item->start_time_display }} Uhr</time>
                         @endif
                     </div>
-                @endif 
+                @endif
                 @if ($item->location)
                     <div class="flex items-start gap-3 md:col-span-2">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -56,7 +59,7 @@
                             @endif
                         </div>
                     </div>
-                @endif 
+                @endif
                 @if ($item->articles->isNotEmpty())
                     <div class="flex items-start gap-3 mt-4 md:col-span-2 mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
