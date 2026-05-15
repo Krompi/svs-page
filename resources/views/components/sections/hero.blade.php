@@ -1,12 +1,16 @@
 @props(['banners' => [], 'settings' => []])
 
 @if(count($banners) > 0)
+    @php
+        $isSingle = count($banners) === 1;
+    @endphp
     <section class="splide" aria-label="Banner Slider" id="hero-slider"
         data-splide="{{ json_encode([
-            'type'   => 'loop',
-            'autoplay' => $settings['autoplay'] ?? true,
-            'arrows' => $settings['arrows'] ?? true,
-            'pagination' => $settings['pagination'] ?? true,
+            'type'   => $isSingle ? 'slide' : 'loop',
+            'autoplay' => $isSingle ? false : ($settings['autoplay'] ?? true),
+            'arrows' => $isSingle ? false : ($settings['arrows'] ?? true),
+            'pagination' => $isSingle ? false : ($settings['pagination'] ?? true),
+            'drag' => !$isSingle,
             'interval' => 5000,
             'pauseOnHover' => true,
         ]) }}">

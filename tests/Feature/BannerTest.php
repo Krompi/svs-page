@@ -53,4 +53,23 @@ class BannerTest extends TestCase
 
         $view->assertDontSee('splide');
     }
+
+    public function test_hero_section_disables_slider_for_single_banner(): void
+    {
+        $banner = Banner::create([
+            'title' => 'Single Banner',
+            'published' => true,
+        ]);
+
+        $view = $this->view('components.sections.hero', [
+            'banners' => [$banner],
+            'settings' => ['autoplay' => true, 'arrows' => true, 'pagination' => true]
+        ]);
+
+        $view->assertSee('"type":"slide"');
+        $view->assertSee('"autoplay":false');
+        $view->assertSee('"arrows":false');
+        $view->assertSee('"pagination":false');
+        $view->assertSee('"drag":false');
+    }
 }
