@@ -20,4 +20,17 @@ class PageRepository extends ModuleRepository
         // dd($model);
         $this->model = $model;
     }
+
+    public function afterSave($model, $fields): void
+    {
+        $this->updateBrowser($model, $fields, 'banners');
+        parent::afterSave($model, $fields);
+    }
+
+    public function getFormFields($model): array
+    {
+        $fields = parent::getFormFields($model);
+        $fields = array_merge($fields, $this->getFormFieldsForBrowser($model, 'banners'));
+        return $fields;
+    }
 }

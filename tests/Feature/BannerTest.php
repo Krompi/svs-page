@@ -33,6 +33,7 @@ class BannerTest extends TestCase
         $banner = Banner::create([
             'title' => 'Hero Banner Title',
             'published' => true,
+            'show_text_box' => true,
         ]);
 
         $view = $this->view('components.sections.hero', [

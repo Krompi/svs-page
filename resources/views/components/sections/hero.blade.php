@@ -19,16 +19,18 @@
                 @foreach($banners as $banner)
                     <li class="splide__slide">
                         <div class="relative bg-gray-200 min-h-[500px] flex items-center">
-                            <div class="max-w-7xl mx-auto px-6 py-20 relative z-40 w-full">
-                                <div class="bg-white p-8 rounded-xl shadow w-full md:w-1/2 lg:w-1/3">
-                                    <h1 class="text-2xl md:text-3xl font-bold mb-4">
-                                        {{ $banner->title }}
-                                    </h1>
-                                    <div class="flex flex-col gap-4">
-                                        {!! $banner->renderBlocks() !!}
+                            @if($banner->show_text_box)
+                                <div class="max-w-7xl mx-auto px-6 py-20 relative z-40 w-full">
+                                    <div class="bg-white p-8 rounded-xl shadow w-full md:w-1/2 lg:w-1/3">
+                                        <h1 class="text-2xl md:text-3xl font-bold mb-4">
+                                            {{ $banner->title }}
+                                        </h1>
+                                        <div class="flex flex-col gap-4">
+                                            {!! $banner->renderBlocks() !!}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
                             @if($banner->hasImage('cover'))
                                 <img src="{{ $banner->image('cover', 'default') }}" alt="{{ $banner->title }}" class="absolute top-0 left-0 w-full h-full object-cover z-0">
                             @endif

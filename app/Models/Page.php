@@ -12,6 +12,7 @@ use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\Sortable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use A17\Twill\Models\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Page extends Model implements Sortable
 {
@@ -32,5 +33,9 @@ class Page extends Model implements Sortable
     public $slugAttributes = [
         'title',
     ];
-    
+
+    public function banners(): BelongsToMany
+    {
+        return $this->belongsToMany(Banner::class)->withPivot('position')->orderByPivot('position');
+    }
 }

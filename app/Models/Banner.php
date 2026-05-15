@@ -21,6 +21,7 @@ class Banner extends Model implements Sortable
         'title',
         'description',
         'position',
+        'show_text_box',
     ];
 
     public $translatedAttributes = [
