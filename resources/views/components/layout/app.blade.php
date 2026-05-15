@@ -16,7 +16,7 @@
 
     <x-layout.footer />
 
-    <x-layout.lightbox />
+    @include('site.layout.lightbox')
 
     @stack('scripts')
 </body>
