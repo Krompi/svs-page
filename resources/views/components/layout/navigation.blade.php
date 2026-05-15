@@ -1,3 +1,7 @@
+@php
+    $menuLinks = \App\Models\MenuLink::published()->whereNull('parent_id')->orderBy('position')->get();
+@endphp
+
 <header class="bg-white shadow-sm relative z-50">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         <!-- Logo and Site Name -->
@@ -15,15 +19,15 @@
 
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex space-x-8 text-sm font-medium">
-            @foreach(config('navigation.menu') as $item)
+            @foreach($menuLinks as $item)
                 @php
-                    $href = isset($item['route']) ? route($item['route']) : ($item['url'] ?? '#');
+                    $children = $item->children()->published()->orderBy('position')->get();
                 @endphp
-                @if(isset($item['children']) && count($item['children']) > 0)
-                    <x-ui.dropdown :label="$item['label']" :children="$item['children']" />
+                @if($children->isNotEmpty())
+                    <x-ui.dropdown :label="$item->title" :children="$children" />
                 @else
-                    <a href="{{ $href }}" class="hover:text-primary transition-colors duration-200">
-                        {{ $item['label'] }}
+                    <a href="{{ $item->href }}" target="{{ $item->target }}" class="hover:text-primary transition-colors duration-200">
+                        {{ $item->title }}
                     </a>
                 @endif
             @endforeach
@@ -43,32 +47,29 @@
     <!-- Mobile Navigation Menu -->
     <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
         <nav class="px-6 py-4 space-y-4">
-            @foreach(config('navigation.menu') as $item)
+            @foreach($menuLinks as $item)
                 @php
-                    $href = isset($item['route']) ? route($item['route']) : ($item['url'] ?? '#');
+                    $children = $item->children()->published()->orderBy('position')->get();
                 @endphp
-                @if(isset($item['children']) && count($item['children']) > 0)
+                @if($children->isNotEmpty())
                     <div class="space-y-2">
                         <button type="button" class="dropdown-toggle w-full flex justify-between items-center text-left font-medium hover:text-primary" aria-expanded="false">
-                            <span>{{ $item['label'] }}</span>
+                            <span>{{ $item->title }}</span>
                             <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
                                 <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                             </svg>
                         </button>
                         <div class="hidden pl-4 space-y-2 border-l-2 border-gray-100">
-                            @foreach($item['children'] as $child)
-                                @php
-                                    $childHref = isset($child['route']) ? route($child['route']) : ($child['url'] ?? '#');
-                                @endphp
-                                <a href="{{ $childHref }}" class="block text-sm text-gray-600 hover:text-primary">
-                                    {{ $child['label'] }}
+                            @foreach($children as $child)
+                                <a href="{{ $child->href }}" target="{{ $child->target }}" class="block text-sm text-gray-600 hover:text-primary">
+                                    {{ $child->title }}
                                 </a>
                             @endforeach
                         </div>
                     </div>
                 @else
-                    <a href="{{ $href }}" class="block font-medium hover:text-primary transition-colors duration-200">
-                        {{ $item['label'] }}
+                    <a href="{{ $item->href }}" target="{{ $item->target }}" class="block font-medium hover:text-primary transition-colors duration-200">
+                        {{ $item->title }}
                     </a>
                 @endif
             @endforeach
