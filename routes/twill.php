@@ -15,3 +15,4 @@ Route::name('events.createArticle')->post('events/createArticle/{id}', 'EventCon
 TwillRoutes::module('articles');
 
 TwillRoutes::module('topics');
+TwillRoutes::module('banners');
