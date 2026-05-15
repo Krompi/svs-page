@@ -17,4 +17,4 @@ Route::get('/articles', [ArticleDisplayController::class, 'index'])->name('artic
 Route::get('/events/{slug}', [EventDisplayController::class, 'show'])->name('events.show');
 Route::get('/events', [EventDisplayController::class, 'index'])->name('events.index');
 
-Route::get('{slug}', [PageDisplayController::class, 'show'])->name('frontend.page'); 
+Route::get('{slug}', [PageDisplayController::class, 'show'])->name('frontend.page');
