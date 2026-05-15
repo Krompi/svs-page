@@ -15,13 +15,25 @@
         @php
             $images = $block->images('gallery', 'default');
             $originalImages = $block->images('gallery', 'original');
+            $medias = $block->medias('gallery')->get();
         @endphp
         @foreach($images as $index => $image)
-            <a href="{{ $originalImages[$index] ?? $image }}"
+            @php
+                $media = $medias->get($index);
+                $alt = $media
+                    ? (data_get($media, 'pivot.metadatas.default.altText')
+                        ?? data_get($media, 'pivot.metadatas.default.alt_text')
+                        ?? data_get($media, 'metadatas.default.altText')
+                        ?? data_get($media, 'metadatas.default.alt_text')
+                        ?? data_get($media, 'alt_text')
+                        ?? '')
+                    : '';
+            @endphp
+            <a href="{{ data_get($originalImages, $index, $image) }}"
                class="lightbox-item block overflow-hidden rounded-sm hover:shadow transition-shadow duration-300 border border-gray-300"
                data-index="{{ $index }}"
                data-lightbox="gallery-{{ $block->id }}">
-                <img src="{{ $image }}" alt="{{ $block->imageAltText('gallery', $index) }}" class="w-full aspect-video object-cover">
+                <img src="{{ $image }}" alt="{{ $alt }}" class="w-full aspect-video object-cover">
             </a>
         @endforeach
     </div>
