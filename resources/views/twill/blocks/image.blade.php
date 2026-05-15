@@ -48,3 +48,8 @@
     connected-to="width"
     :connected-to-values="['half', 'third', 'fourth']"
 />
+
+<x-twill::checkbox
+    name="show_lightbox"
+    label="in Lightbox öffnen"
+/>

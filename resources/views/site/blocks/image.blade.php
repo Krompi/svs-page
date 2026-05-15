@@ -21,5 +21,11 @@
 @endphp
 
 <div class="{{ $containerClasses }}">
-    <img src="{{ $block->image('highlight', 'desktop') }}" class="w-full h-auto block"/>
+    @if($block->input('show_lightbox'))
+        <a href="{{ $block->image('highlight', 'original') }}" class="lightbox-item block" data-lightbox="image-{{ $block->id }}">
+            <img src="{{ $block->image('highlight', 'desktop') }}" alt="{{ $block->imageAltText('highlight') }}" class="w-full h-auto block"/>
+        </a>
+    @else
+        <img src="{{ $block->image('highlight', 'desktop') }}" alt="{{ $block->imageAltText('highlight') }}" class="w-full h-auto block"/>
+    @endif
 </div>

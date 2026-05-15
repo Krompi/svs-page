@@ -11,6 +11,12 @@ return [
                         'ratio' => 16 / 9,
                     ],
                 ],
+                'original' => [
+                    [
+                        'name' => 'original',
+                        'ratio' => 0,
+                    ],
+                ],
                 'mobile' => [
                     [
                         'name' => 'mobile',
@@ -23,6 +29,12 @@ return [
                     [
                         'name' => 'default',
                         'ratio' => 16 / 9,
+                    ],
+                ],
+                'original' => [
+                    [
+                        'name' => 'original',
+                        'ratio' => 0,
                     ],
                 ],
             ],
