@@ -35,6 +35,9 @@ class AppServiceProvider extends ServiceProvider
         TwillNavigation::addLink(
             NavigationLink::make()->forModule('menuLinks')->title('Menu')
         );
+        TwillNavigation::addLink(
+            NavigationLink::make()->forModule('topics')->title('Themen')
+        );
         TwillAppSettings::registerSettingsGroup(
             SettingsGroup::make()->name('homepage')->label('Homepage')
         );
