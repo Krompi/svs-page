@@ -6,6 +6,7 @@ use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Services\Listings\Columns\Text;
 use A17\Twill\Services\Listings\TableColumns;
 use A17\Twill\Services\Forms\Fields\BlockEditor;
+use A17\Twill\Services\Forms\Fields\Checkbox;
 use A17\Twill\Services\Forms\Fields\Input;
 use A17\Twill\Services\Forms\Fields\Medias;
 use A17\Twill\Services\Forms\Form;
@@ -32,6 +33,10 @@ class BannerController extends BaseModuleController
 
         $form->add(
             Input::make()->name('title')->label('Title')->translatable()
+        );
+
+        $form->add(
+            Checkbox::make()->name('show_text_box')->label('Text-Box anzeigen')->default(true)
         );
 
         $form->add(

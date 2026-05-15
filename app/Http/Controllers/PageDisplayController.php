@@ -17,16 +17,19 @@ class PageDisplayController extends Controller
     {
         // dd($slug);
         $page = $pageRepository->forSlug($slug);
- 
+
         if (!$page) {
             abort(404);
         }
 
         $blocksHtml = $page->blocks->isNotEmpty() ? $page->renderBlocks() : '';
 
+        $banners = $page->banners()->where('published', true)->get();
+
         return view('site.page', [
             'item' => $page,
             'blocksHtml' => $blocksHtml,
+            'banners' => $banners,
         ]);
     }
 
@@ -71,9 +74,13 @@ class PageDisplayController extends Controller
         $events = $eventsQuery->get();
         $articles = $articlesQuery->get();
 
-        $banners = Banner::where('published', true)
-            ->orderBy('position', 'asc')
-            ->get();
+        $banners = $frontPage?->banners()->where('published', true)->get() ?? collect();
+
+        if ($banners->isEmpty() && !$frontPage) {
+            $banners = Banner::where('published', true)
+                ->orderBy('position', 'asc')
+                ->get();
+        }
 
         try {
             $sliderSettings = [

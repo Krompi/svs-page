@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Twill;
 use A17\Twill\Http\Controllers\Admin\ModuleController as BaseModuleController;
 use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Services\Forms\Fields\BlockEditor;
+use A17\Twill\Services\Forms\Fields\Browser;
 use A17\Twill\Services\Forms\Fields\Input;
 use A17\Twill\Services\Forms\Fields\Medias;
+use A17\Twill\Services\Forms\Fieldset;
 use A17\Twill\Services\Forms\Form;
 use A17\Twill\Services\Listings\Columns\Text;
 use A17\Twill\Services\Listings\TableColumns;
@@ -21,6 +23,26 @@ class PageController extends BaseModuleController
     {
         $this->setPermalinkBase('');
         $this->withoutLanguageInPermalink();
+    }
+
+    public function getSideFieldsets(TwillModelContract $model): Form
+    {
+        $form = parent::getSideFieldsets($model);
+
+        $form->addFieldset(
+            Fieldset::make()
+                ->title('Banner')
+                ->id('banners')
+                ->fields([
+                    Browser::make()
+                        ->name('banners')
+                        ->modules([\App\Models\Banner::class])
+                        ->label('Banner auswählen')
+                        ->max(5)
+                ])
+        );
+
+        return $form;
     }
 
     /**
