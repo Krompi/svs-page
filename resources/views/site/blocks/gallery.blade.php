@@ -12,12 +12,16 @@
     @endif
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="gallery-{{ $block->id }}">
-        @foreach($block->imagesAsArrays('gallery', 'default') as $index => $image)
-            <a href="{{ $block->image('gallery', 'original', [], false, false, $index) }}"
+        @php
+            $images = $block->images('gallery', 'default');
+            $originalImages = $block->images('gallery', 'original');
+        @endphp
+        @foreach($images as $index => $image)
+            <a href="{{ $originalImages[$index] ?? $image }}"
                class="lightbox-item block overflow-hidden rounded-sm hover:shadow transition-shadow duration-300 border border-gray-300"
                data-index="{{ $index }}"
                data-lightbox="gallery-{{ $block->id }}">
-                <img src="{{ $image['src'] }}" alt="{{ $image['alt'] }}" class="w-full aspect-video object-cover">
+                <img src="{{ $image }}" alt="{{ $block->imageAltText('gallery', $index) }}" class="w-full aspect-video object-cover">
             </a>
         @endforeach
     </div>
