@@ -18,11 +18,32 @@ class MenuLink extends Model implements Sortable
         'title',
         'description',
         'position',
+        'external_link',
+        'external_link_new_window',
     ];
     
     public $translatedAttributes = [
         'title',
         'description',
     ];
-    
+
+    public function getHrefAttribute()
+    {
+        if ($this->external_link) {
+            return $this->external_link;
+        }
+
+        $page = $this->getRelated('page')->first();
+
+        if ($page) {
+            return route('frontend.page', $page->slug);
+        }
+
+        return '#';
+    }
+
+    public function getTargetAttribute()
+    {
+        return $this->external_link_new_window ? '_blank' : '_self';
+    }
 }

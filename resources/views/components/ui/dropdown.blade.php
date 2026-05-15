@@ -16,13 +16,11 @@
          aria-orientation="vertical">
         <div class="py-1">
             @foreach($children as $child)
-                @php
-                    $href = isset($child['route']) ? route($child['route']) : ($child['url'] ?? '#');
-                @endphp
-                <a href="{{ $href }}"
+                <a href="{{ $child->href }}"
+                   target="{{ $child->target }}"
                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary transition-colors duration-200"
                    role="menuitem">
-                    {{ $child['label'] }}
+                    {{ $child->title }}
                 </a>
             @endforeach
         </div>
