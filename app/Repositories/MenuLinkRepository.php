@@ -10,6 +10,7 @@ use App\Models\MenuLink;
 class MenuLinkRepository extends ModuleRepository
 {
     protected $relatedBrowsers = ['page'];
+    protected string $reorderNestedModuleItemsJobQueue = 'sync';
     use HandleTranslations, HandleNesting;
 
     public function __construct(MenuLink $model)
