@@ -26,7 +26,7 @@
         default => 'text-left items-start',
     };
 
-    $containerClasses = "bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden flex flex-col my-4 $widthClasses";
+    $containerClasses = "bg-gray-50 border border-gray-200 hover:shadow rounded-sm overflow-hidden flex flex-col my-4 $widthClasses";
 
     if ($orientation === 'horizontal') {
         $containerClasses = "bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden flex flex-col md:flex-row my-4 w-full";
@@ -62,7 +62,7 @@
         @endif
 
 
-        <div class="w-full">
+        <div class="w-full space-y-4">
             {!! $renderData->renderChildren('card_content') !!}
         </div>
 
