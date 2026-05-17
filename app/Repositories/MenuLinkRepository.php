@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Jobs\ReorderNestedModuleItems;
 use A17\Twill\Repositories\Behaviors\HandleTranslations;
 use A17\Twill\Repositories\Behaviors\HandleNesting;
 use A17\Twill\Repositories\ModuleRepository;
@@ -10,11 +11,16 @@ use App\Models\MenuLink;
 class MenuLinkRepository extends ModuleRepository
 {
     protected $relatedBrowsers = ['page'];
-    protected string $reorderNestedModuleItemsJobQueue = 'sync';
     use HandleTranslations, HandleNesting;
 
     public function __construct(MenuLink $model)
     {
         $this->model = $model;
+    }
+
+    public function setNewOrder(array $ids): void
+    {
+        ReorderNestedModuleItems::dispatch($this->model, $ids)
+            ->onQueue('sync');
     }
 }

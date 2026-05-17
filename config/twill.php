@@ -5,6 +5,38 @@ return [
         'use_twill_blocks' => [],
         'crops' => [ 
             'highlight' => [
+                'default' => [
+                    [
+                        'name' => 'default',
+                        'ratio' => 16 / 9,
+                    ],
+                ],
+                'desktop' => [
+                    [
+                        'name' => 'desktop',
+                        'ratio' => 16 / 9,
+                    ],
+                ],
+                'original' => [
+                    [
+                        'name' => 'original',
+                        'ratio' => 0,
+                    ],
+                ],
+                'mobile' => [
+                    [
+                        'name' => 'mobile',
+                        'ratio' => 1,
+                    ],
+                ],
+            ],
+            'cover' => [
+                'default' => [
+                    [
+                        'name' => 'default',
+                        'ratio' => 16 / 9,
+                    ],
+                ],
                 'desktop' => [
                     [
                         'name' => 'desktop',
@@ -41,13 +73,29 @@ return [
         ],
     ],
     'default_crops' => [
-        'page_cover' => [
+        'cover' => [
             'default' => [
                 [
                     'name' => 'default',
                     'ratio' => 16 / 9,
                 ]
             ]
-        ]
+        ],
+        'article_cover' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ]
+            ]
+        ],
+        'event_cover' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ]
+            ]
+        ],
     ]
 ];
