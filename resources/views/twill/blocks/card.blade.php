@@ -1,5 +1,5 @@
 @twillBlockTitle('Card')
-@twillBlockIcon('content-library')
+@twillBlockIcon('image-text')
 @twillBlockGroup('app')
 
 <x-twill::medias

@@ -5,10 +5,13 @@
     $headingLevelInput = $block->input('heading_level') ?? 'h2';
     $link = $block->input('link');
     $title = $block->translatedInput('title');
-    $hasImage = $block->hasImage('cover');
+    $hasImage = $block->hasImage('cover', 'desktop');
+    $imageUrl = $hasImage ? $block->image('cover', 'desktop') : null;
+    $imageAlt = $hasImage ? $block->imageAltText('cover') : '';
 
     // Validate heading level
     $headingLevel = in_array($headingLevelInput, ['h2', 'h3', 'h4']) ? $headingLevelInput : 'h2';
+    $headingClasses = 'mb-4 text-2xl font-bold tracking-tight text-gray-900';
 
     $widthClasses = match($width) {
         '1/2' => 'md:w-1/2',
@@ -31,14 +34,14 @@
 @endphp
 
 <div class="{{ $containerClasses }}">
-    @if($hasImage)
+    @if($imageUrl)
         <div class="{{ $orientation === 'horizontal' ? 'md:w-1/3' : 'w-full' }}">
             @if($link)
                 <a href="{{ $link }}" class="block">
-                    <img class="w-full h-auto object-cover aspect-video" src="{{ $block->image('cover', 'highlight') }}" alt="{{ $block->imageAltText('cover') }}" />
+                    <img class="w-full h-auto object-cover aspect-video" src="{{ $imageUrl }}" alt="{{ $imageAlt }}" />
                 </a>
             @else
-                <img class="w-full h-auto object-cover aspect-video" src="{{ $block->image('cover', 'highlight') }}" alt="{{ $block->imageAltText('cover') }}" />
+                <img class="w-full h-auto object-cover aspect-video" src="{{ $imageUrl }}" alt="{{ $imageAlt }}" />
             @endif
         </div>
     @endif
@@ -47,19 +50,21 @@
         @if($title)
             @if($link)
                 <a href="{{ $link }}">
-                    <{!! $headingLevel !!} class="mb-4 text-2xl font-bold tracking-tight text-gray-900">
+                    {!! "<{$headingLevel} class=\"{$headingClasses}\">" !!}
                         {{ $title }}
-                    </{!! $headingLevel !!}>
+                    {!! "</{$headingLevel}>" !!}
                 </a>
             @else
-                <{!! $headingLevel !!} class="mb-4 text-2xl font-bold tracking-tight text-gray-900">
+                {!! "<{$headingLevel} class=\"{$headingClasses}\">" !!}
                     {{ $title }}
-                </{!! $headingLevel !!}>
+                {!! "</{$headingLevel}>" !!}
             @endif
         @endif
 
+
         <div class="w-full">
-            {!! $block->renderChildrenBlocks('card_content') !!}
+            {!! $renderData->renderChildren('card_content') !!}
         </div>
+
     </div>
 </div>

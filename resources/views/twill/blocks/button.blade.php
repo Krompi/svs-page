@@ -1,5 +1,5 @@
 @twillBlockTitle('Button')
-@twillBlockIcon('link')
+@twillBlockIcon('b-button')
 
 <x-twill::input
     name="text"
