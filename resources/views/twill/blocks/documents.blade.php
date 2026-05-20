@@ -33,4 +33,5 @@
     label="Dokumente"
     :item-label="'Dokument'"
     :note="'Beliebig viele Dokumente hinzufügen'"
+    :max="20"
 />
