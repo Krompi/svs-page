@@ -3,6 +3,9 @@
 return [
     'block_editor' => [
         'use_twill_blocks' => [],
+        'files' => [
+            'documents',
+        ],
         'crops' => [ 
             'highlight' => [
                 'default' => [
