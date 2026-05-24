@@ -43,7 +43,7 @@ class ArticleController extends BaseModuleController
                                 ];
                             })->toArray()
                         )
-                        ->addOptional(),
+                        ->required(false),
                     Browser::make()
                         ->name('topics')
                         ->modules([\App\Models\Topic::class])
