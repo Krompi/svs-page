@@ -13,6 +13,18 @@
     ]"
 />
 
+<x-twill::radios
+    name="feed_layout"
+    label="Typ"
+    default="compact"
+    :inline="true"
+    :options="[
+        ['value' => 'compact', 'label' => 'Kompakt'],
+        ['value' => 'detailed', 'label' => 'Detailliert'],
+        ['value' => 'cards', 'label' => 'Karten'],
+    ]"
+/>
+
 <x-twill::input
     name="count"
     label="Anzahl der Einträge"
