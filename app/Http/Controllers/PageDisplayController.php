@@ -57,7 +57,7 @@ class PageDisplayController extends Controller
             })
             ->where('start_date', '>=', now())
             ->orderBy('start_date', 'asc')
-            ->take(2);
+            ->take(3);
 
         $articlesQuery = Article::where('published', true)
             ->where(function ($query) {
