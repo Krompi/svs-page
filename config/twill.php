@@ -104,5 +104,9 @@ return [
     'media_library' => [
         'disk' => 's3',
         'acl' => null,
-    ]
+    ],
+    'glide' => [
+        'disk' => 's3',
+        'cache' => 'local',
+    ],
 ];
