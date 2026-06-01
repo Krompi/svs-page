@@ -100,5 +100,9 @@ return [
                 ]
             ]
         ],
+    ],
+    'media_library' => [
+        'disk' => 's3',
+        'acl' => null,
     ]
 ];
