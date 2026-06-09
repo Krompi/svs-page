@@ -7,6 +7,8 @@ use App\Http\Controllers\PageDisplayController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 Route::get('/debug/s3-image', function () { 
     $key = '617d0b27-df0c-41d4-bd22-b952f68c58c8/gemini-generated-image-pyivcopyivcopyiv.png'; 
@@ -25,6 +27,29 @@ Route::get('/debug/s3-image', function () {
     } catch (\Throwable $e) { 
         return response()->json(['error' => $e->getMessage(), 'trace' => $e->getTraceAsString()], 500); 
     } 
+});
+
+Route::get('/debug/configs', function () { 
+    return response()->json([ 
+                            'twillmediadisk' => config('twill.medialibrary.disk'), 
+                            'twillglidedisk' => config('twill.glide.disk'), 
+                            'glidecachedisk' => config('twill.glide.cache'), 
+                            'filesystemss3' => config('filesystems.disks.s3'), 
+                            ]); 
+});
+
+Route::get('/debug/media/{uuid}', function (Request $request, $uuid) {
+    // Schutz: erwarte ein Geheim‑Token in der Query, setze DEBUG_TOKEN in .env
+    if ($request->query('token') !== env('DEBUG_TOKEN')) {
+        abort(403);
+    }
+
+    $media = DB::table('medias')
+        ->select('id', 'uuid', 'filename', 'disk', 'path', 'folder')
+        ->where('uuid', $uuid)
+        ->first();
+
+    return response()->json($media);
 });
 
 Route::get('s3-test', function () {
