@@ -8,6 +8,25 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
+Route::get('/debug/s3-image', function () { 
+    $key = '617d0b27-df0c-41d4-bd22-b952f68c58c8/gemini-generated-image-pyivcopyivcopyiv.png'; 
+    try { 
+        $disk = Storage::disk('s3'); 
+        $exists = $disk->exists($key); 
+        $size = $exists ? $disk->size($key) : null; 
+        $url = $disk->url($key); 
+        $driverClass = get_class($disk->getDriver()); 
+        return response()->json([ 
+                                'exists' => $exists, 
+                                'size' => $size, 
+                                'url' => $url, 
+                                'driverClass' => $driverClass, 
+                                ]); 
+    } catch (\Throwable $e) { 
+        return response()->json(['error' => $e->getMessage(), 'trace' => $e->getTraceAsString()], 500); 
+    } 
+});
+
 Route::get('s3-test', function () {
 //     // Den S3-Disk auswählen
     $disk = Storage::disk('s3');
