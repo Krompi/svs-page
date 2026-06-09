@@ -38,6 +38,12 @@ Route::get('/debug/configs', function () {
                             ]); 
 });
 
+Route::get('/debug/tables', function (Request $request) {
+    // Für Postgres: liste Tabellen im aktuellen Schema
+    $tables = DB::select("SELECT tablename FROM pg_tables WHERE schemaname = current_schema()");
+    return response()->json($tables);
+});
+
 Route::get('/debug/media/{uuid}', function (Request $request, $uuid) {
     // Schutz: erwarte ein Geheim‑Token in der Query, setze DEBUG_TOKEN in .env
     if ($request->query('token') !== env('DEBUG_TOKEN')) {
