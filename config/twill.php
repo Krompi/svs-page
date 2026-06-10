@@ -107,6 +107,11 @@ return [
         'acl'                 => env('MEDIA_LIBRARY_ACL', 'public-read'),
         'local_path' => env('MEDIA_LIBRARY_LOCAL_PATH', 'uploads/'),    
     ],
+    'file_library' => [
+        'endpoint_type' => env('FILE_LIBRARY_ENDPOINT_TYPE', 's3'),
+        'disk'          => 's3',
+        'acl'           => env('FILE_LIBRARY_ACL', 'public-read'),
+    ],
     'glide' => [    
         'source_disk' => env('GLIDE_SOURCE_DISK', 's3'),
         'cache_disk' => env('GLIDE_CACHE_DISK', 's3'),
