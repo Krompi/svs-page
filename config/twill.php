@@ -107,8 +107,11 @@ return [
         'acl'                 => env('MEDIA_LIBRARY_ACL', 'public-read'),
         'local_path' => env('MEDIA_LIBRARY_LOCAL_PATH', 'uploads/'),    
     ],
-    'glide' => [
-        'disk' => 's3',
-        'cache' => 'local',
+    'glide' => [    
+        'source_disk' => env('GLIDE_SOURCE_DISK', 's3'),
+        'cache_disk' => env('GLIDE_CACHE_DISK', 's3'),
+        'cache_path_prefix' => env('GLIDE_CACHE_PATH_PREFIX', '.glide-cache'),
+        'base_url' => env('GLIDE_BASE_URL', null),
+        'use_signed_urls' => env('GLIDE_USE_SIGNED_URLS', false),
     ],
 ];
