@@ -102,8 +102,10 @@ return [
         ],
     ],
     'media_library' => [
-        'disk' => 's3',
-        'acl' => null,
+        'endpoint_type'       => env('MEDIA_LIBRARY_ENDPOINT_TYPE', 's3'),
+        'disk'                => 's3',
+        'acl'                 => env('MEDIA_LIBRARY_ACL', 'public-read'),
+        'local_path' => env('MEDIA_LIBRARY_LOCAL_PATH', 'uploads/'),    
     ],
     'glide' => [
         'disk' => 's3',
