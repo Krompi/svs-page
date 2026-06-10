@@ -113,7 +113,9 @@ return [
         'acl'           => env('FILE_LIBRARY_ACL', 'public-read'),
     ],
     'glide' => [    
+        'use_source_disk'    => true,
         'source_disk'       => env('GLIDE_SOURCE_DISK', 's3'),
+        'use_cache_disk'     => true,
         'cache_disk'        => env('GLIDE_CACHE_DISK', 's3'),
         'cache_path_prefix' => env('GLIDE_CACHE_PATH_PREFIX', '.glide-cache'),
         'source_path_prefix' => env('GLIDE_SOURCE_PATH_PREFIX', 'uploads'), // ← NEU
