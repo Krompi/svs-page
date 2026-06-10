@@ -29,6 +29,16 @@ Route::get('/debug/s3-image', function () {
     } 
 });
 
+Route::get('/debug-s3', function () {
+    $disk = Storage::disk('s3');
+    
+    return response()->json([
+        'root'   => $disk->getAdapter()->getPathPrefix() 
+                    ?? 'kein root / anderer Adapter',
+        'files'  => $disk->allFiles(),
+    ]);
+});
+
 Route::get('/debug/configs', function () { 
     return response()->json([ 
                             'twillmediadisk' => config('twill.medialibrary.disk'), 
