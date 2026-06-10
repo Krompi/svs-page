@@ -33,9 +33,10 @@ Route::get('/debug-s3', function () {
     $disk = Storage::disk('s3');
     
     return response()->json([
-        'root'   => $disk->getAdapter()->getPathPrefix() 
-                    ?? 'kein root / anderer Adapter',
-        'files'  => $disk->allFiles(),
+        'config' => config('filesystems.disks.s3'),
+        'twill_media' => config('twill.media_library'),
+        'twill_glide' => config('twill.glide'),
+        'files' => $disk->allFiles(),
     ]);
 });
 
