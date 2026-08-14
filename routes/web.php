@@ -29,6 +29,17 @@ Route::get('/debug/s3-image', function () {
     } 
 });
 
+Route::get('/debug-s3', function () {
+    $disk = Storage::disk('s3');
+    
+    return response()->json([
+        'config' => config('filesystems.disks.s3'),
+        'twill_media' => config('twill.media_library'),
+        'twill_glide' => config('twill.glide'),
+        'files' => $disk->allFiles(),
+    ]);
+});
+
 Route::get('/debug/configs', function () { 
     return response()->json([ 
                             'twillmediadisk' => config('twill.medialibrary.disk'), 
